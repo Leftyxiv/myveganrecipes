@@ -10,6 +10,8 @@ const compression = require('compression');
 const cors = require('cors');
 const path = require('path');
 
+const AppError = require('./utils/appError');
+
 
 const app = express();
 app.enable('trust proxy');
@@ -52,6 +54,10 @@ app.use(compression());
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();
     next();
+});
+
+app.all('*', (req, res, next) => {
+    next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
 // app.listen(port, () => {
