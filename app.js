@@ -58,3 +58,5 @@ app.listen(port, () => {
 });
 
 module.exports = app;
+
+// mongodb+srv://<username>:<password>@cluster0.jycnh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
