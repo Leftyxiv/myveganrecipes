@@ -8,6 +8,7 @@ const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const cors = require('cors');
+const path = require('path');
 
 
 const app = express();
@@ -53,9 +54,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.listen(port, () => {
-    console.log(`app running on port ${port}`)
-});
+// app.listen(port, () => {
+//     console.log(`app running on port ${port}`)
+// });
 
 module.exports = app;
 
