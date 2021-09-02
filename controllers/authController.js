@@ -54,11 +54,12 @@ exports.signup = tryCatchAsync(async (req, res, next) => {
         name,
         email,
         password,
+        passwordConfirm,
     });
 
     // send email
     const url = `${req.protocol}://${req.get('host')}/me`;
-    await new Email(user, url).sendWelcome();
+    // await new Email(user, url).sendWelcome();
 
     // createSendToken(user, 201, res);
     createSendToken(user, 201, res);
@@ -93,7 +94,7 @@ exports.logout = (req, res) => {
     });
 };
 
-exports.protect = catchAsync(async (req, res, next) => {
+exports.protect = tryCatchAsync(async (req, res, next) => {
     // 1) Getting token and check if it's there
     let token;
     if (
@@ -241,7 +242,7 @@ exports.resetPassword = tryCatchAsync(async (req, res, next) => {
     createSendToken(user, 200, res);
 });
 
-exports.updatePassword = catchAsync(async (req, res, next) => {
+exports.updatePassword = tryCatchAsync(async (req, res, next) => {
     // 1) Get user from collection
     const user = await User.findById(req.user.id).select('+password');
 

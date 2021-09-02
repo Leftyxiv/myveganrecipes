@@ -36,6 +36,7 @@ const userSchema = new mongoose.Schema({
         validate: {
             // This only works on CREATE and SAVE!!!
             validator: function (el) {
+                console.log(el, this.password)
                 return el === this.password;
             },
             message: 'Passwords are not the same!',
@@ -108,9 +109,18 @@ userSchema.methods.createPasswordResetToken = function () {
 
     return resetToken;
 };
+// console.log(mongoose.models)
+// exports.User = mongoose.model('User', userSchema);
+// const User = mongoose.model('Users', userSchema);
 
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+// module.exports = User;
 
 //test
+let User;
+try {
+  User = mongoose.model('users')
+} catch (error) {
+  User = mongoose.model('users', userSchema)
+}
+
+module.exports = User;

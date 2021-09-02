@@ -66,9 +66,10 @@ exports.getOne = Model =>
 
 exports.getAll = Model =>
     tryCatchAsync(async (req, res, next) => {
-
+        console.log(Model)
+        let filter = {};
         // EXECUTE QUERY
-        const features = new APIFeatures(Model.find(filter), req.query)
+        const features = new APIFeatures(Model['model'].find(filter), req.query)
             .filter()
             .sort()
             .limitFields()
