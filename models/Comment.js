@@ -30,3 +30,4 @@ try {
 } catch (error) {
     Comment = mongoose.model('Comment', commmentSchema);
 }
+module.exports = Comment;

@@ -10,12 +10,15 @@ const compression = require('compression');
 const cors = require('cors');
 const path = require('path');
 
+// CUSTOM IMPORTS
 const AppError = require('./utils/appError');
 
-
+// ROUTER IMPORTS
 const userRouter = require('./routes/userRoutes');
 const recipeRouter = require('./routes/recipeRoutes');
+const commentRouter = require('./routes/commentRoutes');
 
+// START APP CODE
 const app = express();
 app.enable('trust proxy');
 const port = 3001;
@@ -61,6 +64,7 @@ app.use((req, res, next) => {
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/recipes', recipeRouter);
+app.use('/api/v1/comments', commentRouter);
 
 app.all('*', (req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
