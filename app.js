@@ -14,6 +14,7 @@ const AppError = require('./utils/appError');
 
 
 const userRouter = require('./routes/userRoutes');
+const recipeRouter = require('./routes/recipeRoutes');
 
 const app = express();
 app.enable('trust proxy');
@@ -59,6 +60,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/recipes', recipeRouter);
 
 app.all('*', (req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

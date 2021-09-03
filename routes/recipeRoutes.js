@@ -10,14 +10,14 @@ const router = express.Router({ mergeParams: true });
 router.route('/')
   .get(recipeController.getAllRecipes)
   .post(
-    recipeController.setRecipUserIds,
+    recipeController.setRecipUserId,
     recipeController.createRecipe
   );
 
 router.route('/:id')
   .get(recipeController.getRecipe)
   .patch(
-      recipeController.setRecipUserIds,
+      recipeController.setRecipUserId,
       recipeController.updateRecipe
   )
   .delete(recipeController.deleteRecipe);

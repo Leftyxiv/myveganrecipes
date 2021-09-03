@@ -32,4 +32,11 @@ const recipeSchema = new mongoose.Schema({
     }
 });
 
-exports.Recipe = mongoose.model('Recipe', recipeSchema);
+let Recipe;
+try {
+  Recipe = mongoose.model('recipes')
+} catch (error) {
+  Recipe = mongoose.model('recipes', recipeSchema)
+}
+
+module.exports = Recipe;
